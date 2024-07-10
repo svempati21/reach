@@ -1,5 +1,5 @@
 vars:
-  specialized_entity_types: "(Gene_or_gene_product|Species|CellLine|Organ|CellType|TissueType|Family|Cellular_Component|Simple_Chemical|Site|BioProcess)"
+  specialized_entity_types: "(Gene_or_gene_product|Species|CellLine|Organ|CellType|TissueType|Spine|Family|Cellular_Component|Simple_Chemical|Site|BioProcess)"
 
 rules:
 ###################
@@ -175,10 +175,18 @@ rules:
   - name: ner-tissue-type
     label: TissueType
     action: mkNERMentions
-    priority: 3
+    priority: 1
     type: token
     pattern: |
-      [entity='B-TissueType'] [entity='I-TissueType']*
+      [entity='B-TissueType']|[entity='I-TissueType']|[entity='B-TissueType'][entity='I-TissueType']
+
+  - name: ner-spine
+    label: Spine
+    action: mkNERMentions
+    priority: 1
+    type: token
+    pattern: |
+      [entity='B-Spine']|[entity='I-Spine']|[entity='B-Spine'][entity='I-Spine']
 
   # - name: ner-infered-cell-type
   #   label: [CellType]

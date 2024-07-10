@@ -1,2 +1,2 @@
 #!/bin/bash
-sbt 'runMain org.clulab.reach.ReachShell'
+sbt -java-home $JAVA_HOME 'runMain org.clulab.reach.ReachShell'
